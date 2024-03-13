@@ -9,5 +9,10 @@ while (input.length !== 0) {
 
 const new_arr = arr.map((e, index) => e === 0 ? index + 1 : null).filter(e => e !== null);
 
+/*
+기존 방식
 console.log(new_arr[0]);
 console.log(new_arr[1]);
+*/
+
+new_arr.forEach((e) => console.log(e));
