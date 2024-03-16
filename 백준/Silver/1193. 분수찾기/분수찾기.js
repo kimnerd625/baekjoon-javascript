@@ -1,22 +1,33 @@
+/*
+2 - 1
+3 - 2 1/2
+4 - 3 3/1
+5 - 4 1/4 
+6 - 5 5/1
+
+left - 맨 끝은 1/n-1
+right - 맨 끝은 n-1/1
+*/
+
 const x = parseInt(require("fs").readFileSync("/dev/stdin").toString().trim());
 
 let count = 1;
 
-// x가 속하는 대각선 찾기
 while (x > count * (count + 1) / 2) {
     count += 1;
 }
 
-// 대각선 내에서 x의 위치 찾기
-let positionInDiagonal = x - (count * (count - 1) / 2);
-let numerator, denominator;
+const startPoint = count % 2 === 0 ? "left" : "right";
+let dif = x - (count * (count - 1) / 2);
 
-if (count % 2 === 0) { // 짝수번째 대각선
-    numerator = positionInDiagonal;
-    denominator = count + 1 - positionInDiagonal;
-} else { // 홀수번째 대각선
-    numerator = count + 1 - positionInDiagonal;
-    denominator = positionInDiagonal;
+let num, den;
+
+if (count % 2 === 0) {
+    num = dif;
+    den = count + 1 - dif;
+} else {
+    num = count + 1 - dif;
+    den = dif;
 }
 
-console.log(`${numerator}/${denominator}`);
+console.log(`${num}/${den}`);
